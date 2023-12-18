@@ -10,6 +10,7 @@
       <th>Prenom</th>
       <th>Date de naissance</th>
       <th>Email</th>
+      <th *ngIf="showPresenceColumn">État de présence</th>
       <th>Action</th>
     </tr>
     </thead>
@@ -21,11 +22,16 @@
       <td> {{stg.prenom }}</td>
       <td>{{stg.dateNaissance | date : "dd/MM/yyyy" }}</td>
       <td> {{stg.adressMail }}</td>
+      <td *ngIf="showPresenceColumn">{{ stg.etatPresence | json }}</td>
       <td><button (click)="modifierStg(stg.id)"  style="margin-right: 10px"> Modifier </button>
         <button (click)="supprimerStg(stg.id)"  style="margin-right: 10px"> Supprimer </button></td>
 
     </tr>
     </tbody>
+
+
+
+
 
   </table>
 <br>

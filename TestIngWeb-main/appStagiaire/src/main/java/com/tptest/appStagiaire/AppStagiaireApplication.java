@@ -13,6 +13,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -30,6 +32,12 @@ class Stagiaire{
 	@Temporal(TemporalType.DATE)
 	private Date dateNaissance;
 	private String adressMail;
+
+	// Stagiaire.java
+	@ElementCollection
+	private List<Integer> etatDePresence;
+
+
 
 
 }
@@ -73,7 +81,12 @@ class stagiaireRestControler {
 		return stagiaireRepository.save(stg);
 	}
 
-
+	@GetMapping(value = "/stagiaires/{id}/etat")
+	public List<Integer> getEtatDePresence(@PathVariable(name = "id") Long id) {
+		return stagiaireRepository.findById(id)
+				.map(Stagiaire::getEtatDePresence)
+				.orElse(Collections.emptyList());
+	}
 }
 
 
@@ -89,8 +102,12 @@ public class AppStagiaireApplication {
 	@Bean
 	CommandLineRunner star(StagiaireRepository stagiaireRepository) {
 		return  args ->{
-			stagiaireRepository.save(new Stagiaire(null,"Aichaoui","Aicha",new Date("01/01/2000"), "aicha1.aicha1@adressemail.com"));
+			stagiaireRepository.save(new Stagiaire(
+					null, "Aichaoui", "Aicha", new Date("01/01/2000"), "email@mail.com", Arrays.asList(1))
+			);
 			stagiaireRepository.findAll().forEach(stg-> {System.out.println(stg.toString());});
+
+
 
 		};
 	}

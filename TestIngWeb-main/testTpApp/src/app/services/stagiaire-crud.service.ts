@@ -16,7 +16,7 @@ export class StagiaireCrudService {
 
   constructor(private  httpClient:HttpClient) { }
   getAllStg():Observable<Stagiaire[]>{
-    return this.httpClient.get<Stagiaire[]>(this.url);
+    return this.httpClient.get<Stagiaire[]>(`${this.url}/etatPresence`);
   }
   AddStg(stagiaire: Stagiaire):Observable<Stagiaire>{
     return this.httpClient.post<Stagiaire>(this.url,stagiaire);

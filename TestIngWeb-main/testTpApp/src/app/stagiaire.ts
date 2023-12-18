@@ -4,6 +4,6 @@ export class Stagiaire {
   prenom:string="";
   dateNaissance:Date=new Date();
   adressMail:string="";
-
+  etatPresence: number[] = [];
 
 }

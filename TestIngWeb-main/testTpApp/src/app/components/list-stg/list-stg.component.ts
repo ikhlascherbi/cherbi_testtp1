@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Stagiaire} from "../../stagiaire";
 import {StagiaireCrudService} from "../../services/stagiaire-crud.service";
 import {Router, RouterLink} from "@angular/router";
-import {DatePipe, NgForOf, NgIf, UpperCasePipe} from "@angular/common";
+import {DatePipe, JsonPipe, NgForOf, NgIf, UpperCasePipe} from "@angular/common";
 
 @Component({
   selector: 'app-list-stg',
@@ -12,7 +12,8 @@ import {DatePipe, NgForOf, NgIf, UpperCasePipe} from "@angular/common";
     NgIf,
     NgForOf,
     RouterLink,
-    DatePipe
+    DatePipe,
+    JsonPipe
   ],
   templateUrl: './list-stg.component.html',
   styleUrl: './list-stg.component.css'
@@ -48,6 +49,7 @@ export class ListStgComponent implements OnInit {
   }
 
 
+
   modifierStg(id: number) {
     this.router.navigate(['/update', id]);
 
@@ -65,6 +67,11 @@ export class ListStgComponent implements OnInit {
     });
     this.showList();
 
+  }
+  showPresenceColumn: boolean = false;
+
+  togglePresenceColumn() {
+    this.showPresenceColumn = !this.showPresenceColumn;
   }
 }
 
