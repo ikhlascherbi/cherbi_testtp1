@@ -1,8 +1,10 @@
-import {Component, signal} from '@angular/core';
+import {Component, NgModule, signal} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import {ListStgComponent} from "./components/list-stg/list-stg.component";
+import { AssignmentInterfaceComponent } from './affectation/affectation.component';
 
+// @ts-ignore
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -18,4 +20,9 @@ export class AppComponent {
     this.showPresenceColumn = !this.showPresenceColumn;
 
   }
+@NgModule({
+  declarations: []
+
+})
 }
+
